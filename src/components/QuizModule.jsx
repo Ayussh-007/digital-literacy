@@ -102,7 +102,7 @@ export default function QuizModule() {
   const asciiProgress = '█'.repeat(filledBlocks) + '░'.repeat(emptyBlocks);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)] overflow-hidden gap-6 relative max-w-[1600px] mx-auto w-full">
+    <div className="flex flex-col min-h-[calc(100vh-64px)] gap-6 relative max-w-[1600px] mx-auto w-full pb-8">
       {/* Top Header */}
       <div className="flex flex-shrink-0 items-center justify-between bg-[#151027]/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-[#2D2550] shadow-sm">
         <Button variant="ghost" size="sm" onClick={() => setQuizActive(false)} icon={X} className="text-dark-muted hover:text-white">
@@ -142,9 +142,9 @@ export default function QuizModule() {
           </div>
 
           {/* Answer Cards Grid */}
-          <div className="flex-1 min-h-0">
+          <div className="flex-1">
             {question.type === 'multiple_choice' && question.options && (
-              <div className="grid grid-cols-2 grid-rows-2 gap-6 h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[300px]">
                 {question.options.map((opt, i) => {
                   const isCorrect = answerRevealed && i === question.correctAnswer;
                   const isWrong = answerRevealed && i !== question.correctAnswer;
@@ -195,7 +195,7 @@ export default function QuizModule() {
             )}
 
             {question.type === 'true_false' && (
-              <div className="grid grid-cols-2 gap-8 h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[250px]">
                 {[true, false].map((val) => {
                   const isCorrect = answerRevealed && val === question.correctAnswer;
                   const isWrong = answerRevealed && val !== question.correctAnswer;

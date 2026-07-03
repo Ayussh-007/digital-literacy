@@ -89,24 +89,28 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(108, 92, 231, 0.6);
 }
 
-/* ===== Glass Cards - Premium Elevated ===== */
+/* ===== Liquid Glass Cards ===== */
 .glass-card {
-  background: rgba(30, 23, 53, 0.65);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(108, 92, 231, 0.12);
-  border-radius: 24px;
+  background: rgba(30, 23, 53, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 32px;
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.2),
-    0 1px 0 rgba(255, 255, 255, 0.03) inset;
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .glass-card-light {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 /* ===== Gradient Backgrounds ===== */
@@ -116,12 +120,12 @@ h1, h2, h3, h4, h5, h6 {
 .gradient-danger { background: linear-gradient(135deg, #FF6B6B, #EE5A24); }
 
 .gradient-mesh {
-  background:
-    radial-gradient(ellipse at 15% 50%, rgba(108, 92, 231, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 85% 15%, rgba(0, 206, 201, 0.08) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 85%, rgba(253, 121, 168, 0.06) 0%, transparent 45%),
-    radial-gradient(ellipse at 70% 50%, rgba(116, 185, 255, 0.04) 0%, transparent 40%),
-    var(--color-dark-bg);
+  background-color: var(--color-dark-bg);
+  /* The mesh background is now mostly driven by FloatingBackground's liquid blobs, 
+     but we leave a subtle dark gradient here as a base */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(0, 206, 201, 0.15) 0%, transparent 60%);
 }
 
 /* ===== Keyframe Animations ===== */
@@ -189,15 +193,15 @@ h1, h2, h3, h4, h5, h6 {
 .animate-rainbow { animation: rainbow 3s linear infinite; }
 .animate-shake { animation: shake 0.5s ease-in-out; }
 
-/* ===== Premium Buttons ===== */
+/* ===== Premium Liquid Buttons ===== */
 .btn-game {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 32px;
-  border: none;
-  border-radius: 18px;
+  padding: 16px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px; /* Pill shape for liquid feel */
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.95rem;
@@ -205,17 +209,26 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-game:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-game:active {
   transform: translateY(-1px) scale(0.98);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn-game::after {
@@ -223,46 +236,56 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 0; left: -100%;
   width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   transition: left 0.5s;
 }
 .btn-game:hover::after { left: 100%; }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6C5CE7, #A29BFE);
+  background: rgba(108, 92, 231, 0.6);
   color: white;
-  box-shadow: 0 4px 20px rgba(108, 92, 231, 0.35);
+  box-shadow: 
+    0 8px 24px rgba(108, 92, 231, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.btn-primary:hover { box-shadow: 0 8px 32px rgba(108, 92, 231, 0.5); }
+.btn-primary:hover { box-shadow: 0 16px 40px rgba(108, 92, 231, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #00CEC9, #55EFC4);
-  color: #0F0A1E;
-  box-shadow: 0 4px 20px rgba(0, 206, 201, 0.3);
+  background: rgba(0, 206, 201, 0.6);
+  color: white;
+  box-shadow: 
+    0 8px 24px rgba(0, 206, 201, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.btn-secondary:hover { box-shadow: 0 8px 32px rgba(0, 206, 201, 0.45); }
+.btn-secondary:hover { box-shadow: 0 16px 40px rgba(0, 206, 201, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
 
 .btn-accent {
-  background: linear-gradient(135deg, #FD79A8, #E84393);
+  background: rgba(253, 121, 168, 0.6);
   color: white;
-  box-shadow: 0 4px 20px rgba(253, 121, 168, 0.3);
+  box-shadow: 
+    0 8px 24px rgba(253, 121, 168, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #FF6B6B, #EE5A24);
+  background: rgba(255, 107, 107, 0.6);
   color: white;
-  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+  box-shadow: 
+    0 8px 24px rgba(255, 107, 107, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-warning {
-  background: linear-gradient(135deg, #FDCB6E, #F9CA24);
-  color: #0F0A1E;
+  background: rgba(253, 203, 110, 0.6);
+  color: white;
 }
 
 .btn-success {
-  background: linear-gradient(135deg, #00B894, #55EFC4);
-  color: #0F0A1E;
-  box-shadow: 0 4px 20px rgba(0, 184, 148, 0.3);
+  background: rgba(0, 184, 148, 0.6);
+  color: white;
+  box-shadow: 
+    0 8px 24px rgba(0, 184, 148, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* ===== Bonus Button ===== */
@@ -300,17 +323,20 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.8rem;
 }
 
-/* ===== Premium Team Card ===== */
+/* ===== Liquid Glass Team Card ===== */
 .team-card {
   position: relative;
   padding: 28px;
-  border-radius: 24px;
-  background: rgba(30, 23, 53, 0.75);
-  backdrop-filter: blur(20px);
-  border: 2px solid transparent;
+  border-radius: 32px;
+  background: rgba(30, 23, 53, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .team-card::before {
@@ -318,7 +344,9 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 4px;
-  border-radius: 24px 24px 0 0;
+  background: var(--team-color, var(--color-primary));
+  opacity: 0.8;
+  border-radius: 32px 32px 0 0;
 }
 
 .team-card:hover {
@@ -373,8 +401,9 @@ h1, h2, h3, h4, h5, h6 {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(11, 7, 24, 0.88);
-  backdrop-filter: blur(12px);
+  background: rgba(11, 7, 24, 0.6);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -382,17 +411,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modal-content {
-  background: var(--color-dark-card);
-  border: 1px solid rgba(108, 92, 231, 0.15);
-  border-radius: 28px;
-  padding: 40px;
+  background: rgba(30, 23, 53, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  padding: 48px;
   max-width: 640px;
   width: 92%;
   max-height: 88vh;
   overflow-y: auto;
   box-shadow:
     0 32px 80px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(108, 92, 231, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* ===== Leaderboard ===== */

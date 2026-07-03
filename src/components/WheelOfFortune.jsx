@@ -58,32 +58,8 @@ export default function WheelOfFortune() {
     const team = teams.find((t) => t.id === teamId);
 
     switch (result.type) {
-      case 'points':
-        addPoints(teamId, result.value, 'wheel', `Wheel: ${result.label}`);
-        break;
-      case 'multiplier':
-        setMultiplier(result.value);
-        setNotification({
-          emoji: '✨',
-          title: `${result.value}x Points Active!`,
-          subtitle: `${team?.emoji} ${team?.name} - next question is worth ${result.value}x!`,
-        });
-        break;
-      case 'powerup':
-        addPowerUp(teamId, result.value);
-        break;
-      case 'everyone':
-        addPointsToAll(result.value, `Wheel: Everyone +${result.value}`);
-        break;
-      case 'steal':
-        addPoints(teamId, result.value, 'wheel', `Wheel: Steal ${result.value} Points`);
-        break;
       default:
-        setNotification({
-          emoji: '🎉',
-          title: result.label,
-          subtitle: 'Teacher decides the reward!',
-        });
+        // For 'fun' types, we just show a notification
         break;
     }
 
@@ -91,7 +67,7 @@ export default function WheelOfFortune() {
     setNotification({
       emoji: '🎡',
       title: result.label,
-      subtitle: `Awarded to ${team?.emoji} ${team?.name}`,
+      subtitle: `Challenge for ${team?.emoji} ${team?.name}`,
     });
     setShowResult(false);
   };
@@ -212,7 +188,7 @@ export default function WheelOfFortune() {
                   <h3 className="font-heading text-4xl font-bold mb-4" style={{ color: result.color, textShadow: `0 0 20px ${result.color}80` }}>
                     {result.label}
                   </h3>
-                  <p className="text-dark-muted text-base mb-6 font-medium">Select a team to award this reward:</p>
+                  <p className="text-dark-muted text-base mb-6 font-medium">Select a team for this challenge:</p>
 
                   <div className="grid grid-cols-2 gap-3">
                     {teams.map((team) => (
@@ -252,7 +228,7 @@ export default function WheelOfFortune() {
           </Card>
 
           <Card padding="md" className="max-h-[300px] overflow-hidden flex flex-col">
-            <h3 className="font-heading font-bold text-sm text-dark-muted uppercase tracking-wider mb-4">🎡 Wheel Rewards</h3>
+            <h3 className="font-heading font-bold text-sm text-dark-muted uppercase tracking-wider mb-4">🎡 Wheel Challenges</h3>
             <div className="overflow-y-auto custom-scrollbar flex flex-wrap gap-2 pr-2">
               {segments.map((seg, i) => (
                 <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#151027] border border-[#2D2550]">
